@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AQTIRE | Premium Chocolate Luxury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar container">
+        <a href="#home" class="brand">AQTIRE</a>
+        <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content container reveal-on-scroll">
+          <p class="kicker">Luxury in Every Bite</p>
+          <h1>Indulge in Pure Chocolate Luxury</h1>
+          <p>
+            AQTIRE handcrafted chocolates made with the finest cocoa beans.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="btn btn-gold"
+              href="https://wa.me/919999999999?text=Hello%20I%20would%20like%20to%20order%20AQTIRE%20chocolates"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order Now</a
+            >
+            <a class="btn btn-outline" href="#products">Explore Chocolates</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" class="section container">
+        <div class="section-heading reveal-on-scroll">
+          <p class="kicker">Featured Selection</p>
+          <h2>Signature Chocolates</h2>
+        </div>
+        <div class="product-grid">
+          <article class="product-card reveal-on-scroll">
+            <div class="product-image" role="img" aria-label="Dark Cocoa Delight"></div>
+            <h3>Dark Cocoa Delight</h3>
+            <p>Intense dark chocolate crafted for bold, refined tastes.</p>
+            <span class="price">₹ ---</span>
+            <a
+              class="btn btn-small"
+              href="https://wa.me/919999999999?text=Hello%20I%20would%20like%20to%20order%20Dark%20Cocoa%20Delight%20from%20AQTIRE"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order via WhatsApp</a
+            >
+          </article>
+
+          <article class="product-card reveal-on-scroll">
+            <div class="product-image" role="img" aria-label="Caramel Bliss"></div>
+            <h3>Caramel Bliss</h3>
+            <p>Velvety caramel center wrapped in smooth cocoa perfection.</p>
+            <span class="price">₹ ---</span>
+            <a
+              class="btn btn-small"
+              href="https://wa.me/919999999999?text=Hello%20I%20would%20like%20to%20order%20Caramel%20Bliss%20from%20AQTIRE"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order via WhatsApp</a
+            >
+          </article>
+
+          <article class="product-card reveal-on-scroll">
+            <div class="product-image" role="img" aria-label="Hazelnut Dream"></div>
+            <h3>Hazelnut Dream</h3>
+            <p>Roasted hazelnut notes blended with luxurious milk chocolate.</p>
+            <span class="price">₹ ---</span>
+            <a
+              class="btn btn-small"
+              href="https://wa.me/919999999999?text=Hello%20I%20would%20like%20to%20order%20Hazelnut%20Dream%20from%20AQTIRE"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order via WhatsApp</a
+            >
+          </article>
+
+          <article class="product-card reveal-on-scroll">
+            <div class="product-image" role="img" aria-label="Almond Crunch"></div>
+            <h3>Almond Crunch</h3>
+            <p>Premium almonds and rich chocolate for a delightful crunch.</p>
+            <span class="price">₹ ---</span>
+            <a
+              class="btn btn-small"
+              href="https://wa.me/919999999999?text=Hello%20I%20would%20like%20to%20order%20Almond%20Crunch%20from%20AQTIRE"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Order via WhatsApp</a
+            >
+          </article>
+        </div>
+      </section>
+
+      <section id="story" class="section story-section">
+        <div class="container">
+          <div class="section-heading reveal-on-scroll">
+            <p class="kicker">Our Legacy</p>
+            <h2>The Story Behind AQTIRE</h2>
+          </div>
+          <article class="story-card reveal-on-scroll">
+            <h3>Hover to Reveal</h3>
+            <p class="story-hidden">
+              AQTIRE was created from a passion for crafting luxurious chocolates
+              that combine tradition and creativity. Every chocolate is
+              handcrafted with premium cocoa beans and carefully selected
+              ingredients.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="quiz" class="section container">
+        <div class="section-heading reveal-on-scroll">
+          <p class="kicker">Chocolate Quiz</p>
+          <h2>Find Your Chocolate Personality</h2>
+        </div>
+        <form class="quiz-card reveal-on-scroll" id="quiz-form">
+          <fieldset>
+            <legend>1. Do you prefer:</legend>
+            <label><input type="radio" name="taste" value="bitter" required /> Bitter</label>
+            <label><input type="radio" name="taste" value="sweet" /> Sweet</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. Choose your favorite snack:</legend>
+            <label><input type="radio" name="snack" value="nuts" required /> Nuts</label>
+            <label><input type="radio" name="snack" value="caramel" /> Caramel</label>
+            <label><input type="radio" name="snack" value="fruit" /> Fruit</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. Choose your drink:</legend>
+            <label><input type="radio" name="drink" value="coffee" required /> Coffee</label>
+            <label><input type="radio" name="drink" value="milk" /> Milk</label>
+            <label><input type="radio" name="drink" value="tea" /> Tea</label>
+          </fieldset>
+
+          <button type="submit" class="btn btn-gold">Show My Result</button>
+          <p id="quiz-result" class="quiz-result" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="feedback" class="section feedback-section">
+        <div class="container feedback-layout">
+          <div class="feedback-form reveal-on-scroll">
+            <div class="section-heading">
+              <p class="kicker">Customer Feedback</p>
+              <h2>Share Your Experience</h2>
+            </div>
+            <form>
+              <input type="text" placeholder="Name" required />
+              <input type="email" placeholder="Email" required />
+              <label for="rating">Rating (1–5 stars)</label>
+              <select id="rating" required>
+                <option value="">Select rating</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <textarea placeholder="Message / Feedback" rows="4" required></textarea>
+              <button type="submit" class="btn btn-gold">Submit Feedback</button>
+            </form>
+          </div>
+          <div class="reviews reveal-on-scroll">
+            <h3>What Customers Say</h3>
+            <article>
+              <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
+              <blockquote>"Absolutely amazing chocolates!" – Riya</blockquote>
+            </article>
+            <article>
+              <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
+              <blockquote>"Perfect gift for friends and family." – Arjun</blockquote>
+            </article>
+            <article>
+              <p>⭐ ⭐ ⭐ ⭐ ⭐</p>
+              <blockquote>"Rich and smooth flavor." – Meera</blockquote>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section container contact-layout">
+        <div class="contact-form reveal-on-scroll">
+          <div class="section-heading">
+            <p class="kicker">Contact</p>
+            <h2>Let's Craft Sweet Moments</h2>
+          </div>
+          <form>
+            <input type="text" placeholder="Name" required />
+            <input type="email" placeholder="Email" required />
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit" class="btn btn-gold">Submit</button>
+          </form>
+        </div>
+        <aside class="contact-info reveal-on-scroll">
+          <h3>Get in Touch</h3>
+          <p><strong>Phone:</strong> +91 99999 99999</p>
+          <p><strong>Email:</strong> hello@aqtire.com</p>
+          <p><strong>Location:</strong> Mumbai, India</p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p class="brand">AQTIRE</p>
+        <div class="socials" aria-label="Social media links">
+          <span>◯</span>
+          <span>◯</span>
+          <span>◯</span>
+        </div>
+        <p>© <span id="year"></span> AQTIRE. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
