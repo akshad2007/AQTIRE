@@ -361,45 +361,4 @@ textarea::placeholder {
 
 
 
-/* --- Lenis Smooth Scroll --- */
-html.lenis, html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* --- ScrollStack Styles --- */
-.scroll-stack-scroller {
-  position: relative;
-  width: 100%;
-}
-.scroll-stack-inner {
-  position: relative;
-  width: 100%;
-  padding-bottom: 5vh;
-}
-.scroll-stack-card {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 15vh;
-  transform-origin: top center;
-  will-change: transform, filter;
-  background: var(--dark) !important;
-  border: 1px solid rgba(212, 175, 55, 0.3) !important;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
-}
-.scroll-stack-end {
-  height: 5vh;
-  visibility: hidden;
-}
 
