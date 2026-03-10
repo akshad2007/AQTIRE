@@ -4,41 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AQTIRE | Discover Your Perfect Chocolate</title>
+  <meta name="description" content="Take the AQTIRE chocolate quiz and discover your perfect flavor match from our 12 luxury chocolates.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Quiz Specific Overrides */
+    /* ── Quiz Page Styles ── */
+    .quiz-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
     .quiz-container {
-      max-width: 600px;
-      margin: 4rem auto;
-      background: linear-gradient(160deg, rgba(44, 24, 16, 0.8), rgba(24, 13, 10, 0.9));
+      width: min(620px, 100%);
+      background: linear-gradient(160deg, rgba(44, 24, 16, 0.92), rgba(24, 13, 10, 0.96));
       border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 16px;
-      padding: 3rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
       position: relative;
       overflow: hidden;
-      min-height: 400px;
     }
 
-    .quiz-progress {
+    /* Decorative corner accent */
+    .quiz-container::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Progress bar */
+    .quiz-progress-wrap {
+      margin-bottom: 2rem;
+    }
+
+    .quiz-progress-label {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      padding-bottom: 1rem;
       color: var(--gold);
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 1px;
+      margin-bottom: 0.6rem;
     }
 
+    .quiz-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(212, 175, 55, 0.15);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #b88b25, var(--gold));
+      border-radius: 99px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    /* Steps */
     .quiz-step,
     .quiz-result-view {
       display: none;
-      animation: fadeIn 0.5s ease;
+      animation: slideUp 0.45s ease forwards;
     }
 
     .quiz-step.active,
@@ -46,65 +84,127 @@
       display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes resultReveal {
+      0%   { opacity: 0; transform: scale(0.92) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .quiz-result-view.active {
+      animation: resultReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     .quiz-question {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       color: var(--gold);
       margin-bottom: 1.5rem;
       text-align: center;
+      line-height: 1.3;
     }
 
     .quiz-options {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
     .quiz-option {
-      background: rgba(255, 243, 224, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(255, 243, 224, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       color: var(--cream);
-      padding: 1rem;
-      border-radius: 8px;
+      padding: 0.9rem 1.1rem;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1.1rem;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      font-size: 1rem;
       text-align: left;
       font-family: 'Manrope', sans-serif;
+      width: 100%;
     }
 
     .quiz-option:hover {
       background: rgba(212, 175, 55, 0.1);
       border-color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .quiz-option.selected {
+      background: rgba(212, 175, 55, 0.18);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 600;
     }
 
     .quiz-nav {
-      margin-top: 2rem;
+      margin-top: 1.8rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
 
     .btn:disabled {
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
+      transform: none !important;
     }
 
+    /* Result Screen */
     .result-image {
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       background: linear-gradient(140deg, rgba(78, 52, 46, 0.95), rgba(44, 24, 16, 0.8));
-      border: 1px dashed rgba(212, 175, 55, 0.45);
+      border: 2px solid rgba(212, 175, 55, 0.5);
       border-radius: 50%;
       margin: 0 auto 1.5rem auto;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+    }
+
+    .result-profile-tag {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    .result-actions .btn {
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+    }
+
+    .btn-share {
+      background: rgba(255, 243, 224, 0.07);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--cream);
+      font-size: 0.9rem;
+    }
+
+    .btn-share:hover {
+      background: rgba(255, 243, 224, 0.13);
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.2);
     }
   </style>
 </head>
@@ -113,90 +213,132 @@
   <header class="site-header">
     <nav class="navbar container">
       <a href="index.html" class="brand">AQTIRE</a>
+      <a class="btn btn-nav-order" href="https://wa.me/917604933416?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20with%20AQTIRE." target="_blank" rel="noopener">Order Now</a>
     </nav>
   </header>
 
-  <main class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
-    
+  <main class="quiz-wrapper">
     <div class="quiz-container">
-      
-      <!-- Quiz Steps -->
-      <form id="interactive-quiz">
-        <div class="quiz-progress">
-          <span>Question <span id="current-q-num">1</span> of 5</span>
-          <span>AQTIRE Flavor Profile</span>
-        </div>
 
-        <!-- Question 1: Sweetness -->
+      <!-- Progress -->
+      <div class="quiz-progress-wrap" id="quiz-progress-wrap">
+        <div class="quiz-progress-label">
+          <span>Question <span id="current-q-num">1</span> of 8</span>
+          <span>AQTIRE Flavor Quiz</span>
+        </div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Quiz Form -->
+      <form id="interactive-quiz">
+
+        <!-- Q1: Sweetness -->
         <div class="quiz-step active" data-step="1">
-          <h2 class="quiz-question">What is your ideal level of sweetness in a dessert?</h2>
+          <h2 class="quiz-question">What is your ideal level of sweetness?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-flavor="Caramel Bliss">Intensely sweet and rich</button>
-            <button type="button" class="quiz-option" data-flavor="Hazelnut Dream">Smooth, balanced, and milky</button>
-            <button type="button" class="quiz-option" data-flavor="Almond Crunch">Mildly sweet with a savory touch</button>
-            <button type="button" class="quiz-option" data-flavor="Dark Cocoa Delight">Barely sweet, deeply bold and bitter</button>
+            <button type="button" class="quiz-option" data-cats="sweet,caramel">Intensely sweet and rich</button>
+            <button type="button" class="quiz-option" data-cats="nutty,mild">Smooth, balanced and milky</button>
+            <button type="button" class="quiz-option" data-cats="bold,coffee">Barely sweet — deeply bold</button>
+            <button type="button" class="quiz-option" data-cats="fresh,fruity">Lightly sweet with fruity brightness</button>
           </div>
         </div>
 
-        <!-- Question 2: Snack -->
+        <!-- Q2: Snack preference -->
         <div class="quiz-step" data-step="2">
           <h2 class="quiz-question">Choose your favorite mid-day indulgence:</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-flavor="Hazelnut Dream">Roasted nuts and spreads</button>
-            <button type="button" class="quiz-option" data-flavor="Caramel Bliss">Sticky candies or toffee</button>
-            <button type="button" class="quiz-option" data-flavor="Almond Crunch">Crunchy biscuits or granolas</button>
-            <button type="button" class="quiz-option" data-flavor="Dark Cocoa Delight">A strong espresso shot</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Roasted nuts and nut butter</button>
+            <button type="button" class="quiz-option" data-cats="sweet,caramel">Sticky caramel candies or toffee</button>
+            <button type="button" class="quiz-option" data-cats="coffee,bold">A strong espresso or black coffee</button>
+            <button type="button" class="quiz-option" data-cats="fruity">Fresh berries or tropical fruits</button>
           </div>
         </div>
 
-        <!-- Question 3: Drink -->
+        <!-- Q3: Drink pairing -->
         <div class="quiz-step" data-step="3">
-          <h2 class="quiz-question">What drink pairs perfectly with your chocolate?</h2>
+          <h2 class="quiz-question">What drink pairs best with your chocolate?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-flavor="Caramel Bliss">A frothy latte or hot milk</button>
-            <button type="button" class="quiz-option" data-flavor="Dark Cocoa Delight">A bold, black coffee</button>
-            <button type="button" class="quiz-option" data-flavor="Almond Crunch">A robust black tea</button>
-            <button type="button" class="quiz-option" data-flavor="Hazelnut Dream">A spiced mocha</button>
+            <button type="button" class="quiz-option" data-cats="sweet,caramel">A frothy latte or creamy hot milk</button>
+            <button type="button" class="quiz-option" data-cats="coffee,bold">A bold black coffee</button>
+            <button type="button" class="quiz-option" data-cats="fresh">Iced mint tea or cold water</button>
+            <button type="button" class="quiz-option" data-cats="fruity">A fresh fruit juice or smoothie</button>
           </div>
         </div>
 
-        <!-- Question 4: Texture -->
+        <!-- Q4: Texture -->
         <div class="quiz-step" data-step="4">
-          <h2 class="quiz-question">Which texture experience do you crave most?</h2>
+          <h2 class="quiz-question">Which texture experience do you love most?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-flavor="Dark Cocoa Delight">A sharp, brittle snap that melts slowly</button>
-            <button type="button" class="quiz-option" data-flavor="Caramel Bliss">A gooey, velvety melt-in-your-mouth center</button>
-            <button type="button" class="quiz-option" data-flavor="Hazelnut Dream">A smooth creaminess with a roasted undertone</button>
-            <button type="button" class="quiz-option" data-flavor="Almond Crunch">A satisfying, hearty crunch with every bite</button>
+            <button type="button" class="quiz-option" data-cats="bold,coffee">Sharp brittle snap that melts slowly</button>
+            <button type="button" class="quiz-option" data-cats="sweet,caramel">Gooey, velvety melt-in-mouth center</button>
+            <button type="button" class="quiz-option" data-cats="nutty,mild">Smooth creaminess with a roasted hint</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Satisfying hearty crunch every bite</button>
           </div>
         </div>
 
-        <!-- Question 5: Mood -->
+        <!-- Q5: Mood -->
         <div class="quiz-step" data-step="5">
           <h2 class="quiz-question">Describe your current mood:</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-flavor="Hazelnut Dream">Relaxed and cozy</button>
-            <button type="button" class="quiz-option" data-flavor="Caramel Bliss">Playful and indulgent</button>
-            <button type="button" class="quiz-option" data-flavor="Dark Cocoa Delight">Focused and sophisticated</button>
-            <button type="button" class="quiz-option" data-flavor="Almond Crunch">Energetic and adventurous</button>
+            <button type="button" class="quiz-option" data-cats="nutty,mild">Relaxed and cozy</button>
+            <button type="button" class="quiz-option" data-cats="sweet,fruity">Playful and indulgent</button>
+            <button type="button" class="quiz-option" data-cats="bold,coffee">Focused and sophisticated</button>
+            <button type="button" class="quiz-option" data-cats="fresh">Refreshed and energized</button>
+          </div>
+        </div>
+
+        <!-- Q6: Flavor note -->
+        <div class="quiz-step" data-step="6">
+          <h2 class="quiz-question">Which flavor note excites you most?</h2>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-cats="fruity">Zesty citrus like orange or lemon</button>
+            <button type="button" class="quiz-option" data-cats="fresh">Cool refreshing mint</button>
+            <button type="button" class="quiz-option" data-cats="mild">Silky tropical coconut</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Warm, earthy pistachio or hazelnut</button>
+          </div>
+        </div>
+
+        <!-- Q7: Fruit preference -->
+        <div class="quiz-step" data-step="7">
+          <h2 class="quiz-question">Which fruit flavor would you love in chocolate?</h2>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-cats="fruity">Raspberry or mixed berries</button>
+            <button type="button" class="quiz-option" data-cats="fruity,mild">Strawberry — sweet and milky</button>
+            <button type="button" class="quiz-option" data-cats="fruity,bold">Orange zest — citrusy and bold</button>
+            <button type="button" class="quiz-option" data-cats="nutty,mild">No fruit — I prefer pure chocolate</button>
+          </div>
+        </div>
+
+        <!-- Q8: Occasion -->
+        <div class="quiz-step" data-step="8">
+          <h2 class="quiz-question">When do you usually reach for chocolate?</h2>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-cats="coffee,bold">Morning with my coffee ritual</button>
+            <button type="button" class="quiz-option" data-cats="sweet,caramel">After a meal as a dessert treat</button>
+            <button type="button" class="quiz-option" data-cats="fresh,mild">As a late-night calming indulgence</button>
+            <button type="button" class="quiz-option" data-cats="fruity,nutty">Anytime — I love to explore flavors</button>
           </div>
         </div>
 
         <div class="quiz-nav" id="quiz-nav">
-          <button type="button" id="next-btn" class="btn btn-outline" disabled style="margin-left: auto;">Next Question</button>
+          <button type="button" id="next-btn" class="btn btn-outline" disabled>Next Question →</button>
         </div>
       </form>
 
-      <!-- Quiz Results -->
+      <!-- Result Screen -->
       <div class="quiz-result-view" id="quiz-result-view" style="text-align: center;">
-        <p class="kicker">Your Perfect Match</p>
+        <span class="result-profile-tag">Your Perfect Match</span>
         <div class="result-image" id="result-icon">🍫</div>
-        <h2 id="result-title" style="color: var(--gold); margin-bottom: 0.5rem;">Result</h2>
-        <p id="result-desc" style="color: var(--cream); margin-bottom: 2rem;">...</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-          <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-gold w-full">Order via WhatsApp</a>
-          <a href="index.html" class="btn btn-outline w-full" style="margin-top: 1rem;">Back to AQTIRE Experience</a>
+        <h2 id="result-title" style="color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem;"></h2>
+        <p id="result-profile" style="color: rgba(212,175,55,0.8); font-size: 0.82rem; font-weight:600; letter-spacing:1px; text-transform: uppercase; margin-bottom: 0.8rem;"></p>
+        <p id="result-desc" style="color: rgba(255,243,224,0.85); line-height: 1.7; max-width: 420px; margin: 0 auto;"></p>
+
+        <div class="result-actions">
+          <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-gold">Order via WhatsApp</a>
+          <button type="button" class="btn btn-share" id="share-btn" onclick="shareResult()">Share My Result 🔗</button>
+          <a href="index.html" class="btn btn-outline">← Back to AQTIRE</a>
         </div>
       </div>
 
@@ -205,103 +347,170 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const steps = document.querySelectorAll('.quiz-step');
-      const nextBtn = document.getElementById('next-btn');
-      const progressNum = document.getElementById('current-q-num');
-      const quizNav = document.getElementById('quiz-nav');
-      const quizForm = document.getElementById('interactive-quiz');
-      const resultView = document.getElementById('quiz-result-view');
-      const resultTitle = document.getElementById('result-title');
-      const resultDesc = document.getElementById('result-desc');
-      const whatsappOrder = document.getElementById('whatsapp-order');
-      const resultIcon = document.getElementById('result-icon');
+      const TOTAL_STEPS = 8;
+      const steps        = document.querySelectorAll('.quiz-step');
+      const nextBtn      = document.getElementById('next-btn');
+      const progressNum  = document.getElementById('current-q-num');
+      const progressFill = document.getElementById('progress-fill');
+      const progressWrap = document.getElementById('quiz-progress-wrap');
+      const quizForm     = document.getElementById('interactive-quiz');
+      const resultView   = document.getElementById('quiz-result-view');
+      const resultTitle  = document.getElementById('result-title');
+      const resultDesc   = document.getElementById('result-desc');
+      const resultProfile= document.getElementById('result-profile');
+      const resultIcon   = document.getElementById('result-icon');
+      const whatsappOrder= document.getElementById('whatsapp-order');
 
       let currentStep = 0;
-      let selectedFlavors = []; // Track points
+      // Category score accumulator
+      const scores = { bold: 0, sweet: 0, caramel: 0, nutty: 0, fruity: 0, fresh: 0, coffee: 0, mild: 0 };
 
-      // Flavor mapping data
+      /* ── Flavor Database ── */
       const flavorData = {
-        "Dark Cocoa Delight": { desc: "Intense dark chocolate crafted for bold, refined tastes. Perfect for the sophisticated palate.", icon: "☕" },
-        "Caramel Bliss": { desc: "Velvety caramel center wrapped in smooth cocoa perfection. A purely sweet indulgence.", icon: "🍮" },
-        "Hazelnut Dream": { desc: "Roasted hazelnut notes blended seamlessly with luxurious milk chocolate. A cozy classic.", icon: "🌰" },
-        "Almond Crunch": { desc: "Premium almonds and rich chocolate creating a delightful, textured bite. For those who love a crunch.", icon: "🥜" }
+        "Dark Cocoa Delight":      { icon: "☕", profile: "Bold & Intense",    cats: ["bold","coffee"],        desc: "Rich dark chocolate crafted for bold cocoa lovers. Intense, sophisticated and deeply satisfying." },
+        "Coffee Cocoa Fusion":     { icon: "☕", profile: "Bold & Roasted",     cats: ["coffee","bold"],        desc: "Dark chocolate with rich roasted coffee notes. The ultimate pick-me-up for the focused and discerning." },
+        "Caramel Bliss":           { icon: "🍮", profile: "Sweet & Velvety",    cats: ["sweet","caramel"],      desc: "Smooth milk chocolate layered with buttery sweet caramel. Pure, indulgent dessert perfection." },
+        "Caramel Crunch Supreme":  { icon: "🍬", profile: "Sweet & Crunchy",    cats: ["caramel","sweet"],      desc: "Caramel chocolate with satisfying caramelized brittle pieces. Sweet meets satisfying crunch." },
+        "Hazelnut Dream":          { icon: "🌰", profile: "Nutty & Creamy",     cats: ["nutty","mild"],         desc: "Creamy chocolate blended with roasted hazelnuts. A cozy, warming and classic favorite." },
+        "Almond Crunch":           { icon: "🥜", profile: "Nutty & Textured",   cats: ["nutty"],                desc: "Silky chocolate filled with crunchy roasted almonds. For those who crave texture and substance." },
+        "Pistachio Royale":        { icon: "💚", profile: "Nutty & Refined",    cats: ["nutty","mild"],         desc: "Creamy chocolate with roasted pistachio pieces. Earthy, elegant and unexpectedly luxurious." },
+        "Strawberry Velvet":       { icon: "🍓", profile: "Fruity & Milky",     cats: ["fruity","mild"],        desc: "Milk chocolate infused with sweet strawberry flavor. Bright, cheerful and utterly delightful." },
+        "Berry Bliss Chocolate":   { icon: "🫐", profile: "Fruity & Vibrant",   cats: ["fruity"],               desc: "Chocolate blended with raspberry and berry notes. Complex, tangy and beautifully bright." },
+        "Orange Zest Delight":     { icon: "🍊", profile: "Fruity & Bold",      cats: ["fruity","bold"],        desc: "Dark chocolate with a refreshing citrus twist. A bold and zesty pairing that surprises and delights." },
+        "Mint Cocoa Breeze":       { icon: "🌿", profile: "Fresh & Cooling",    cats: ["fresh"],                desc: "Dark chocolate with refreshing mint flavor. Cool, crisp and invigorating — like a breeze in a bar." },
+        "Coconut Silk":            { icon: "🥥", profile: "Mild & Tropical",    cats: ["mild","fresh"],         desc: "Smooth milk chocolate blended with coconut cream. Tropical, gentle and wonderfully soothing." }
       };
 
-      // Option selection logic
+      /* Map: category → ranked flavor names */
+      const categoryMap = {
+        bold:    ["Dark Cocoa Delight","Coffee Cocoa Fusion","Orange Zest Delight"],
+        coffee:  ["Coffee Cocoa Fusion","Dark Cocoa Delight"],
+        sweet:   ["Caramel Bliss","Caramel Crunch Supreme","Strawberry Velvet"],
+        caramel: ["Caramel Crunch Supreme","Caramel Bliss"],
+        nutty:   ["Hazelnut Dream","Almond Crunch","Pistachio Royale"],
+        mild:    ["Coconut Silk","Hazelnut Dream","Pistachio Royale"],
+        fruity:  ["Berry Bliss Chocolate","Strawberry Velvet","Orange Zest Delight"],
+        fresh:   ["Mint Cocoa Breeze","Coconut Silk"]
+      };
+
+      /* ── Option selection ── */
       steps.forEach(step => {
-        const options = step.querySelectorAll('.quiz-option');
-        options.forEach(opt => {
+        step.querySelectorAll('.quiz-option').forEach(opt => {
           opt.addEventListener('click', () => {
-             // Reset siblings
-             options.forEach(o => {
-               o.style.background = 'rgba(255, 243, 224, 0.05)';
-               o.style.borderColor = 'rgba(212, 175, 55, 0.3)';
-               o.classList.remove('selected');
-             });
-             // Select current
-             opt.style.background = 'rgba(212, 175, 55, 0.2)';
-             opt.style.borderColor = 'var(--gold)';
-             opt.classList.add('selected');
-             nextBtn.disabled = false;
+            step.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            nextBtn.disabled = false;
           });
         });
       });
 
-      // Next button logic
+      /* ── Next / Submit ── */
       nextBtn.addEventListener('click', () => {
-        // Record selection
-        const selectedOpt = steps[currentStep].querySelector('.quiz-option.selected');
-        if(selectedOpt) {
-          selectedFlavors.push(selectedOpt.dataset.flavor);
+        const selected = steps[currentStep].querySelector('.quiz-option.selected');
+        if (selected) {
+          // Add points to each category listed in data-cats
+          selected.dataset.cats.split(',').forEach(cat => {
+            const key = cat.trim();
+            if (scores[key] !== undefined) scores[key]++;
+          });
         }
 
-        // Hide current
         steps[currentStep].classList.remove('active');
         currentStep++;
 
         if (currentStep < steps.length) {
-          // Show next
           steps[currentStep].classList.add('active');
           progressNum.textContent = currentStep + 1;
+          progressFill.style.width = `${((currentStep) / TOTAL_STEPS) * 100}%`;
           nextBtn.disabled = true;
-          if (currentStep === steps.length - 1) {
-            nextBtn.textContent = "Show My Result";
-          }
+          nextBtn.textContent = currentStep === steps.length - 1 ? 'Show My Result ✨' : 'Next Question →';
         } else {
-          // Calculate Result
+          progressFill.style.width = '100%';
           calculateResult();
         }
       });
 
+      /* ── Calculate best match ── */
       function calculateResult() {
         quizForm.style.display = 'none';
-        document.querySelector('.quiz-progress').style.display = 'none';
-        
-        // Find most frequent array element
-        const frequency = {};
-        let maxFreq = 0;
-        let finalResult = selectedFlavors[0];
+        progressWrap.style.display = 'none';
 
-        selectedFlavors.forEach(flavor => {
-          frequency[flavor] = (frequency[flavor] || 0) + 1;
-          if (frequency[flavor] > maxFreq) {
-            maxFreq = frequency[flavor];
-            finalResult = flavor;
-          }
+        // Find top-scoring category
+        const topCat = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+
+        // From category map, pick the flavor with best overall score
+        const candidates = categoryMap[topCat] || Object.keys(flavorData);
+        let bestFlavor = candidates[0];
+        let bestScore = -1;
+
+        candidates.forEach(flavor => {
+          const fd = flavorData[flavor];
+          const flavorScore = fd.cats.reduce((sum, c) => sum + (scores[c] || 0), 0);
+          if (flavorScore > bestScore) { bestScore = flavorScore; bestFlavor = flavor; }
         });
 
-        const data = flavorData[finalResult];
+        const data = flavorData[bestFlavor];
+        resultTitle.textContent   = bestFlavor;
+        resultDesc.textContent    = data.desc;
+        resultProfile.textContent = data.profile;
+        resultIcon.textContent    = data.icon;
 
-        resultTitle.textContent = finalResult;
-        resultDesc.textContent = data.desc;
-        resultIcon.textContent = data.icon;
-        
-        const message = encodeURIComponent(`Hello! I took the AQTIRE quiz and was recommended the ${finalResult}. I would like to order it!`);
-        whatsappOrder.href = `https://wa.me/917604933416?text=${message}`;
+        const msg = encodeURIComponent(`Hello! I took the AQTIRE flavor quiz and my perfect match is "${bestFlavor}". I'd love to order it!`);
+        whatsappOrder.href = `https://wa.me/917604933416?text=${msg}`;
+
+        // Store result data for share message
+        window._quizResult     = bestFlavor;
+        window._quizResultDesc = data.desc;
 
         resultView.classList.add('active');
       }
+
+      /* ── Share ── */
+      window.shareResult = async () => {
+        const flavor = window._quizResult     || 'a delicious chocolate';
+        const desc   = window._quizResultDesc || '';
+        const url    = 'https://aqtire.netlify.app/';
+
+        const shareText =
+`🎉 Chocolate discovery unlocked!
+
+I took the AQTIRE Chocolate Quiz and my perfect flavor is:
+
+✨ ${flavor}
+
+${desc}
+
+Curious about your chocolate personality?
+Take the quiz and discover yours!
+
+${url}`;
+
+        const shareBtn = document.getElementById('share-btn');
+
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `My AQTIRE Flavor Match — ${flavor}`,
+              text: shareText
+            });
+            return;
+          } catch (e) {
+            // User cancelled or API failed — fall through to clipboard
+          }
+        }
+
+        // Clipboard fallback
+        try {
+          await navigator.clipboard.writeText(shareText);
+          shareBtn.textContent = '✅ Copied! Paste & share anywhere';
+        } catch (e) {
+          // Last resort: prompt with the text pre-selected
+          prompt('Copy and share your result:', shareText);
+        }
+        setTimeout(() => { shareBtn.textContent = 'Share My Result 🔗'; }, 3000);
+      };
     });
   </script>
+
 </body>
 </html>
