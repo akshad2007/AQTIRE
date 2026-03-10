@@ -3,8 +3,6 @@ const navLinks = document.querySelector('.nav-links');
 const navAnchors = document.querySelectorAll('.nav-links a');
 const revealElements = document.querySelectorAll('.reveal-on-scroll');
 const heroBg = document.querySelector('.hero-bg');
-const quizForm = document.getElementById('quiz-form');
-const quizResult = document.getElementById('quiz-result');
 const year = document.getElementById('year');
 
 menuToggle?.addEventListener('click', () => {
@@ -36,27 +34,84 @@ window.addEventListener('scroll', () => {
   if (heroBg) heroBg.style.transform = `translateY(${offset}px)`;
 });
 
-quizForm?.addEventListener('submit', (event) => {
-  event.preventDefault();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
-  const formData = new FormData(quizForm);
-  const taste = formData.get('taste');
-  const snack = formData.get('snack');
-  const drink = formData.get('drink');
+// --- Flavor Wheel Logic ---
+const flavorNotes = document.querySelectorAll('.flavor-note');
+const flavorMatchDisplay = document.getElementById('flavor-match');
 
-  let resultText = 'You are a Hazelnut Dream Explorer!';
-
-  if (taste === 'bitter' || drink === 'coffee') {
-    resultText = 'You are a Dark Cocoa Lover!';
-  } else if (snack === 'caramel' || taste === 'sweet') {
-    resultText = 'You are a Caramel Bliss Fan!';
-  }
-
-  quizResult.textContent = resultText;
+flavorNotes.forEach(note => {
+  note.addEventListener('mouseenter', () => {
+    flavorNotes.forEach(n => n.classList.remove('active'));
+    note.classList.add('active');
+    flavorMatchDisplay.style.opacity = '0';
+    setTimeout(() => {
+      flavorMatchDisplay.textContent = `Pairs perfectly with: ${note.dataset.match}`;
+      flavorMatchDisplay.style.opacity = '1';
+    }, 150);
+  });
+  
+  note.addEventListener('mouseleave', () => {
+    note.classList.remove('active');
+    flavorMatchDisplay.style.opacity = '0';
+    setTimeout(() => {
+      flavorMatchDisplay.textContent = 'Hover over a flavor note';
+      flavorMatchDisplay.style.opacity = '1';
+    }, 150);
+  });
 });
 
-year.textContent = new Date().getFullYear();
+// --- Quote Carousel Logic ---
+const quotes = document.querySelectorAll('.quote');
+let currentQuoteIndex = 0;
 
+if (quotes.length > 0) {
+  setInterval(() => {
+    quotes[currentQuoteIndex].classList.remove('active');
+    quotes[currentQuoteIndex].setAttribute('aria-hidden', 'true');
+    
+    currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+    
+    quotes[currentQuoteIndex].classList.add('active');
+    quotes[currentQuoteIndex].setAttribute('aria-hidden', 'false');
+  }, 4000);
+}
 
+// --- FAQ Game Logic ---
+const faqCards = document.querySelectorAll('.faq-question-card');
 
+faqCards.forEach(card => {
+  const optionsWrapper = card.querySelector('.q-options');
+  if (!optionsWrapper) return;
+  
+  const correctAns = optionsWrapper.dataset.correct;
+  const optBtns = card.querySelectorAll('.opt-btn');
+  const feedback = card.querySelector('.q-feedback');
 
+  optBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Prevent multiple clicks
+      optBtns.forEach(b => {
+        b.disabled = true;
+        b.style.cursor = 'default';
+        if (b.textContent.trim() === correctAns) {
+          b.classList.add('correct');
+        } else if (b !== btn) {
+          b.style.opacity = '0.5';
+        }
+      });
+      
+      const userAns = btn.textContent.trim();
+      if (userAns === correctAns) {
+        feedback.textContent = 'Correct!';
+        feedback.style.color = '#4CAF50';
+      } else {
+        btn.classList.add('incorrect');
+        feedback.textContent = `Incorrect. The correct answer is ${correctAns}.`;
+        feedback.style.color = '#f44336';
+      }
+    });
+  });
+});
