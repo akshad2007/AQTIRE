@@ -647,13 +647,18 @@ textarea {
   .mobile-only { display: block !important; }
   .desktop-only { display: none !important; }
 
-  .navbar { min-height: 70px; padding: 0 4%; }
-  .brand { font-size: 1.5rem; }
+  .site-header { 
+    background: #000 !important; 
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  }
+  .navbar { min-height: 70px; padding: 0 4%; background: #000; }
+  .brand { font-size: 1.5rem; color: var(--gold); }
   
   .navbar .btn-nav-order {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     margin-right: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge highlight */
   }
   .menu-toggle {
     display: block !important;
@@ -667,14 +672,15 @@ textarea {
     right: 0;
     width: 280px;
     height: 100vh;
-    background: var(--bg-section);
+    background: #000; /* Deep black for maximum contrast */
     flex-direction: column;
     padding: 5rem 2rem;
     gap: 1.5rem;
     z-index: 2001;
     transform: translateX(100%);
     transition: transform 0.4s ease;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    box-shadow: -15px 0 40px rgba(0,0,0,0.8);
+    border-left: 1px solid rgba(212, 175, 55, 0.1);
   }
 
   .nav-links.open { transform: translateX(0); }
@@ -701,7 +707,8 @@ textarea {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.85); /* Darker overlay */
+    backdrop-filter: blur(8px); /* Restored subtle blur for depth */
     z-index: 1500;
   }
 
