@@ -21,11 +21,11 @@
 
     .quiz-container {
       width: min(620px, 100%);
-      background: linear-gradient(160deg, rgba(44, 24, 16, 0.92), rgba(24, 13, 10, 0.96));
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
       border-radius: 20px;
       padding: 2.8rem 2.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
       overflow: hidden;
     }
@@ -36,7 +36,7 @@
       position: absolute;
       top: -60px; right: -60px;
       width: 160px; height: 160px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.15), transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -58,15 +58,15 @@
 
     .quiz-progress-bar {
       width: 100%;
-      height: 4px;
-      background: rgba(212, 175, 55, 0.15);
+      height: 6px;
+      background: var(--bg-cocoa-dark);
       border-radius: 99px;
       overflow: hidden;
     }
 
     .quiz-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #b88b25, var(--gold));
+      background: var(--gold);
       border-radius: 99px;
       transition: width 0.5s ease;
       width: 0%;
@@ -101,7 +101,7 @@
     .quiz-question {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.75rem;
-      color: var(--gold);
+      color: var(--text-main);
       margin-bottom: 1.5rem;
       text-align: center;
       line-height: 1.3;
@@ -114,13 +114,13 @@
     }
 
     .quiz-option {
-      background: rgba(255, 243, 224, 0.04);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      color: var(--cream);
+      background: var(--bg-main);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      color: var(--gold);
       padding: 0.9rem 1.1rem;
       border-radius: 10px;
       cursor: pointer;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      transition: all 0.25s ease;
       font-size: 1rem;
       text-align: left;
       font-family: 'Manrope', sans-serif;
@@ -128,16 +128,17 @@
     }
 
     .quiz-option:hover {
-      background: rgba(212, 175, 55, 0.1);
+      background: var(--bg-cocoa-dark);
       border-color: var(--gold);
       transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .quiz-option.selected {
-      background: rgba(212, 175, 55, 0.18);
+      background: var(--gold);
       border-color: var(--gold);
-      color: var(--gold);
-      font-weight: 600;
+      color: var(--bg-deep);
+      font-weight: 700;
     }
 
     .quiz-nav {
@@ -156,21 +157,22 @@
     .result-image {
       width: 140px;
       height: 140px;
-      background: linear-gradient(140deg, rgba(78, 52, 46, 0.95), rgba(44, 24, 16, 0.8));
-      border: 2px solid rgba(212, 175, 55, 0.5);
+      background: var(--bg-section);
+      border: 2px solid var(--gold);
       border-radius: 50%;
       margin: 0 auto 1.5rem auto;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
-      box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+      color: var(--gold);
     }
 
     .result-profile-tag {
       display: inline-block;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       color: var(--gold);
       font-size: 0.75rem;
       font-weight: 600;
@@ -196,15 +198,15 @@
     }
 
     .btn-share {
-      background: rgba(255, 243, 224, 0.07);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      color: var(--cream);
+      background: var(--bg-cocoa-dark);
+      border: 1px solid var(--gold);
+      color: var(--gold);
       font-size: 0.9rem;
     }
 
     .btn-share:hover {
-      background: rgba(255, 243, 224, 0.13);
-      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.2);
+      background: var(--cocoa-med);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
@@ -238,10 +240,10 @@
         <div class="quiz-step active" data-step="1">
           <h2 class="quiz-question">What is your ideal level of sweetness?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="sweet,caramel">Intensely sweet and rich</button>
-            <button type="button" class="quiz-option" data-cats="nutty,mild">Smooth, balanced and milky</button>
-            <button type="button" class="quiz-option" data-cats="bold,coffee">Barely sweet — deeply bold</button>
-            <button type="button" class="quiz-option" data-cats="fresh,fruity">Lightly sweet with fruity brightness</button>
+            <button type="button" class="quiz-option" data-cats="classic">Intensely sweet and creamy</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Smooth, balanced with a hint of nuts</button>
+            <button type="button" class="quiz-option" data-cats="bold">Barely sweet — deeply dark and bold</button>
+            <button type="button" class="quiz-option" data-cats="unique">Lightly sweet with bold, adventurous notes</button>
           </div>
         </div>
 
@@ -250,9 +252,9 @@
           <h2 class="quiz-question">Choose your favorite mid-day indulgence:</h2>
           <div class="quiz-options">
             <button type="button" class="quiz-option" data-cats="nutty">Roasted nuts and nut butter</button>
-            <button type="button" class="quiz-option" data-cats="sweet,caramel">Sticky caramel candies or toffee</button>
-            <button type="button" class="quiz-option" data-cats="coffee,bold">A strong espresso or black coffee</button>
-            <button type="button" class="quiz-option" data-cats="fruity">Fresh berries or tropical fruits</button>
+            <button type="button" class="quiz-option" data-cats="crunch">Crispy rice snacks or popcorn</button>
+            <button type="button" class="quiz-option" data-cats="bold">A strong espresso or dark roast coffee</button>
+            <button type="button" class="quiz-option" data-cats="unique">Something bold and adventurous</button>
           </div>
         </div>
 
@@ -260,10 +262,10 @@
         <div class="quiz-step" data-step="3">
           <h2 class="quiz-question">What drink pairs best with your chocolate?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="sweet,caramel">A frothy latte or creamy hot milk</button>
-            <button type="button" class="quiz-option" data-cats="coffee,bold">A bold black coffee</button>
-            <button type="button" class="quiz-option" data-cats="fresh">Iced mint tea or cold water</button>
-            <button type="button" class="quiz-option" data-cats="fruity">A fresh fruit juice or smoothie</button>
+            <button type="button" class="quiz-option" data-cats="classic">A warm glass of milk</button>
+            <button type="button" class="quiz-option" data-cats="bold">A bold black coffee</button>
+            <button type="button" class="quiz-option" data-cats="crunch">A light sparkling water</button>
+            <button type="button" class="quiz-option" data-cats="unique">A cold cocktail or mocktail</button>
           </div>
         </div>
 
@@ -271,10 +273,10 @@
         <div class="quiz-step" data-step="4">
           <h2 class="quiz-question">Which texture experience do you love most?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="bold,coffee">Sharp brittle snap that melts slowly</button>
-            <button type="button" class="quiz-option" data-cats="sweet,caramel">Gooey, velvety melt-in-mouth center</button>
-            <button type="button" class="quiz-option" data-cats="nutty,mild">Smooth creaminess with a roasted hint</button>
-            <button type="button" class="quiz-option" data-cats="nutty">Satisfying hearty crunch every bite</button>
+            <button type="button" class="quiz-option" data-cats="bold">A sharp snap that melts into intensity</button>
+            <button type="button" class="quiz-option" data-cats="classic">Silky smooth all the way through</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Creamy with hearty roasted nut pieces</button>
+            <button type="button" class="quiz-option" data-cats="crunch">Light and crispy with every bite</button>
           </div>
         </div>
 
@@ -282,43 +284,43 @@
         <div class="quiz-step" data-step="5">
           <h2 class="quiz-question">Describe your current mood:</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="nutty,mild">Relaxed and cozy</button>
-            <button type="button" class="quiz-option" data-cats="sweet,fruity">Playful and indulgent</button>
-            <button type="button" class="quiz-option" data-cats="bold,coffee">Focused and sophisticated</button>
-            <button type="button" class="quiz-option" data-cats="fresh">Refreshed and energized</button>
+            <button type="button" class="quiz-option" data-cats="classic">Relaxed and craving comfort</button>
+            <button type="button" class="quiz-option" data-cats="crunch">Playful and full of energy</button>
+            <button type="button" class="quiz-option" data-cats="bold">Focused and sophisticated</button>
+            <button type="button" class="quiz-option" data-cats="unique">Adventurous and feeling bold</button>
           </div>
         </div>
 
-        <!-- Q6: Flavor note -->
+        <!-- Q6: Nut preference -->
         <div class="quiz-step" data-step="6">
-          <h2 class="quiz-question">Which flavor note excites you most?</h2>
+          <h2 class="quiz-question">Which nut would you love finding in your chocolate?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="fruity">Zesty citrus like orange or lemon</button>
-            <button type="button" class="quiz-option" data-cats="fresh">Cool refreshing mint</button>
-            <button type="button" class="quiz-option" data-cats="mild">Silky tropical coconut</button>
-            <button type="button" class="quiz-option" data-cats="nutty">Warm, earthy pistachio or hazelnut</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Roasted almonds — classic and crunchy</button>
+            <button type="button" class="quiz-option" data-cats="nutty">Creamy cashews — soft and buttery</button>
+            <button type="button" class="quiz-option" data-cats="crunch">Crispy rice pops — light and fun</button>
+            <button type="button" class="quiz-option" data-cats="bold">No nuts — pure intense chocolate</button>
           </div>
         </div>
 
-        <!-- Q7: Fruit preference -->
+        <!-- Q7: Occasion -->
         <div class="quiz-step" data-step="7">
-          <h2 class="quiz-question">Which fruit flavor would you love in chocolate?</h2>
-          <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="fruity">Raspberry or mixed berries</button>
-            <button type="button" class="quiz-option" data-cats="fruity,mild">Strawberry — sweet and milky</button>
-            <button type="button" class="quiz-option" data-cats="fruity,bold">Orange zest — citrusy and bold</button>
-            <button type="button" class="quiz-option" data-cats="nutty,mild">No fruit — I prefer pure chocolate</button>
-          </div>
-        </div>
-
-        <!-- Q8: Occasion -->
-        <div class="quiz-step" data-step="8">
           <h2 class="quiz-question">When do you usually reach for chocolate?</h2>
           <div class="quiz-options">
-            <button type="button" class="quiz-option" data-cats="coffee,bold">Morning with my coffee ritual</button>
-            <button type="button" class="quiz-option" data-cats="sweet,caramel">After a meal as a dessert treat</button>
-            <button type="button" class="quiz-option" data-cats="fresh,mild">As a late-night calming indulgence</button>
-            <button type="button" class="quiz-option" data-cats="fruity,nutty">Anytime — I love to explore flavors</button>
+            <button type="button" class="quiz-option" data-cats="bold">Morning with my coffee ritual</button>
+            <button type="button" class="quiz-option" data-cats="classic">After a meal as a sweet treat</button>
+            <button type="button" class="quiz-option" data-cats="crunch">As a snack anytime I need energy</button>
+            <button type="button" class="quiz-option" data-cats="unique">At celebrations or special occasions</button>
+          </div>
+        </div>
+
+        <!-- Q8: Chocolate experience -->
+        <div class="quiz-step" data-step="8">
+          <h2 class="quiz-question">What matters most in a chocolate experience?</h2>
+          <div class="quiz-options">
+            <button type="button" class="quiz-option" data-cats="classic">Pure, classic comfort</button>
+            <button type="button" class="quiz-option" data-cats="bold">Intense, dark cocoa depth</button>
+            <button type="button" class="quiz-option" data-cats="crunch,nutty">Satisfying crunch and texture</button>
+            <button type="button" class="quiz-option" data-cats="unique">A bold, unexpected twist</button>
           </div>
         </div>
 
@@ -331,9 +333,9 @@
       <div class="quiz-result-view" id="quiz-result-view" style="text-align: center;">
         <span class="result-profile-tag">Your Perfect Match</span>
         <div class="result-image" id="result-icon">🍫</div>
-        <h2 id="result-title" style="color: var(--gold); font-size: 2rem; margin-bottom: 0.5rem;"></h2>
-        <p id="result-profile" style="color: rgba(212,175,55,0.8); font-size: 0.82rem; font-weight:600; letter-spacing:1px; text-transform: uppercase; margin-bottom: 0.8rem;"></p>
-        <p id="result-desc" style="color: rgba(255,243,224,0.85); line-height: 1.7; max-width: 420px; margin: 0 auto;"></p>
+        <h2 id="result-title" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem;"></h2>
+        <p id="result-profile" style="color: var(--gold); font-size: 0.82rem; font-weight:700; letter-spacing:1.5px; text-transform: uppercase; margin-bottom: 0.8rem;"></p>
+        <p id="result-desc" style="color: var(--secondary); line-height: 1.7; max-width: 420px; margin: 0 auto;"></p>
 
         <div class="result-actions">
           <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-gold">Order via WhatsApp</a>
@@ -363,34 +365,26 @@
 
       let currentStep = 0;
       // Category score accumulator
-      const scores = { bold: 0, sweet: 0, caramel: 0, nutty: 0, fruity: 0, fresh: 0, coffee: 0, mild: 0 };
+      const scores = { classic: 0, nutty: 0, crunch: 0, bold: 0, unique: 0 };
 
-      /* ── Flavor Database ── */
+      /* ── Flavor Database (Official AQTIRE Signature Chocolates) ── */
       const flavorData = {
-        "Dark Cocoa Delight":      { icon: "☕", profile: "Bold & Intense",    cats: ["bold","coffee"],        desc: "Rich dark chocolate crafted for bold cocoa lovers. Intense, sophisticated and deeply satisfying." },
-        "Coffee Cocoa Fusion":     { icon: "☕", profile: "Bold & Roasted",     cats: ["coffee","bold"],        desc: "Dark chocolate with rich roasted coffee notes. The ultimate pick-me-up for the focused and discerning." },
-        "Caramel Bliss":           { icon: "🍮", profile: "Sweet & Velvety",    cats: ["sweet","caramel"],      desc: "Smooth milk chocolate layered with buttery sweet caramel. Pure, indulgent dessert perfection." },
-        "Caramel Crunch Supreme":  { icon: "🍬", profile: "Sweet & Crunchy",    cats: ["caramel","sweet"],      desc: "Caramel chocolate with satisfying caramelized brittle pieces. Sweet meets satisfying crunch." },
-        "Hazelnut Dream":          { icon: "🌰", profile: "Nutty & Creamy",     cats: ["nutty","mild"],         desc: "Creamy chocolate blended with roasted hazelnuts. A cozy, warming and classic favorite." },
-        "Almond Crunch":           { icon: "🥜", profile: "Nutty & Textured",   cats: ["nutty"],                desc: "Silky chocolate filled with crunchy roasted almonds. For those who crave texture and substance." },
-        "Pistachio Royale":        { icon: "💚", profile: "Nutty & Refined",    cats: ["nutty","mild"],         desc: "Creamy chocolate with roasted pistachio pieces. Earthy, elegant and unexpectedly luxurious." },
-        "Strawberry Velvet":       { icon: "🍓", profile: "Fruity & Milky",     cats: ["fruity","mild"],        desc: "Milk chocolate infused with sweet strawberry flavor. Bright, cheerful and utterly delightful." },
-        "Berry Bliss Chocolate":   { icon: "🫐", profile: "Fruity & Vibrant",   cats: ["fruity"],               desc: "Chocolate blended with raspberry and berry notes. Complex, tangy and beautifully bright." },
-        "Orange Zest Delight":     { icon: "🍊", profile: "Fruity & Bold",      cats: ["fruity","bold"],        desc: "Dark chocolate with a refreshing citrus twist. A bold and zesty pairing that surprises and delights." },
-        "Mint Cocoa Breeze":       { icon: "🌿", profile: "Fresh & Cooling",    cats: ["fresh"],                desc: "Dark chocolate with refreshing mint flavor. Cool, crisp and invigorating — like a breeze in a bar." },
-        "Coconut Silk":            { icon: "🥥", profile: "Mild & Tropical",    cats: ["mild","fresh"],         desc: "Smooth milk chocolate blended with coconut cream. Tropical, gentle and wonderfully soothing." }
+        "Milk Plain":     { icon: "🍫", profile: "Classic & Creamy",   cats: ["classic"],          desc: "Smooth and creamy classic milk chocolate made for pure chocolate lovers." },
+        "Almond Nutties": { icon: "🥜", profile: "Nutty & Crunchy",    cats: ["nutty","crunch"],   desc: "Roasted almonds coated in smooth milk chocolate for a crunchy and nutty delight." },
+        "Rum Raisin":     { icon: "🍇", profile: "Bold & Unique",      cats: ["unique"],           desc: "Rich chocolate blended with rum-soaked raisins for a bold and indulgent flavor." },
+        "Rich Almond":    { icon: "🌰", profile: "Nutty & Rich",       cats: ["nutty"],            desc: "Premium chocolate filled with roasted almonds, delivering a rich nutty taste." },
+        "Rich Cashew":    { icon: "🫘", profile: "Nutty & Luxurious",  cats: ["nutty","classic"],  desc: "Smooth chocolate filled with crunchy cashews for a creamy and luxurious bite." },
+        "Milk Crunch":    { icon: "✨",  profile: "Light & Crunchy",   cats: ["crunch","classic"], desc: "Creamy milk chocolate combined with crispy rice for a light and crunchy texture." },
+        "Dark Plain":     { icon: "🌑", profile: "Bold & Intense",     cats: ["bold"],             desc: "Bold dark chocolate made with 70% cocoa for an intense chocolate experience." }
       };
 
       /* Map: category → ranked flavor names */
       const categoryMap = {
-        bold:    ["Dark Cocoa Delight","Coffee Cocoa Fusion","Orange Zest Delight"],
-        coffee:  ["Coffee Cocoa Fusion","Dark Cocoa Delight"],
-        sweet:   ["Caramel Bliss","Caramel Crunch Supreme","Strawberry Velvet"],
-        caramel: ["Caramel Crunch Supreme","Caramel Bliss"],
-        nutty:   ["Hazelnut Dream","Almond Crunch","Pistachio Royale"],
-        mild:    ["Coconut Silk","Hazelnut Dream","Pistachio Royale"],
-        fruity:  ["Berry Bliss Chocolate","Strawberry Velvet","Orange Zest Delight"],
-        fresh:   ["Mint Cocoa Breeze","Coconut Silk"]
+        classic: ["Milk Plain","Rich Cashew","Milk Crunch"],
+        nutty:   ["Almond Nutties","Rich Almond","Rich Cashew"],
+        crunch:  ["Milk Crunch","Almond Nutties"],
+        bold:    ["Dark Plain","Rum Raisin"],
+        unique:  ["Rum Raisin","Dark Plain"]
       };
 
       /* ── Option selection ── */

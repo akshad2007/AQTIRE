@@ -29,39 +29,11 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((el) => revealObserver.observe(el));
 
-window.addEventListener('scroll', () => {
-  const offset = window.scrollY * 0.35;
-  if (heroBg) heroBg.style.transform = `translateY(${offset}px)`;
-});
 
 if (year) {
   year.textContent = new Date().getFullYear();
 }
 
-// --- Flavor Wheel Logic ---
-const flavorNotes = document.querySelectorAll('.flavor-note');
-const flavorMatchDisplay = document.getElementById('flavor-match');
-
-flavorNotes.forEach(note => {
-  note.addEventListener('mouseenter', () => {
-    flavorNotes.forEach(n => n.classList.remove('active'));
-    note.classList.add('active');
-    flavorMatchDisplay.style.opacity = '0';
-    setTimeout(() => {
-      flavorMatchDisplay.textContent = `Pairs perfectly with: ${note.dataset.match}`;
-      flavorMatchDisplay.style.opacity = '1';
-    }, 150);
-  });
-  
-  note.addEventListener('mouseleave', () => {
-    note.classList.remove('active');
-    flavorMatchDisplay.style.opacity = '0';
-    setTimeout(() => {
-      flavorMatchDisplay.textContent = 'Hover over a flavor note';
-      flavorMatchDisplay.style.opacity = '1';
-    }, 150);
-  });
-});
 
 // --- Quote Carousel Logic ---
 const quotes = document.querySelectorAll('.quote');
