@@ -5,13 +5,22 @@ const revealElements = document.querySelectorAll('.reveal-on-scroll');
 const heroBg = document.querySelector('.hero-bg');
 const year = document.getElementById('year');
 
+const menuClose = document.querySelector('.menu-close');
+
 menuToggle?.addEventListener('click', () => {
   navLinks?.classList.toggle('open');
+  document.body.classList.toggle('menu-open');
+});
+
+menuClose?.addEventListener('click', () => {
+  navLinks?.classList.remove('open');
+  document.body.classList.remove('menu-open');
 });
 
 navAnchors.forEach((anchor) => {
   anchor.addEventListener('click', () => {
     navLinks?.classList.remove('open');
+    document.body.classList.remove('menu-open');
   });
 });
 
