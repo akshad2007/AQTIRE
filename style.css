@@ -654,12 +654,6 @@ textarea {
   .navbar { min-height: 70px; padding: 0 4%; background: #000; }
   .brand { font-size: 1.5rem; color: var(--gold); }
   
-  .navbar .btn-nav-order {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    margin-right: 0.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle edge highlight */
-  }
   .menu-toggle {
     display: block !important;
     font-size: 1.8rem;
