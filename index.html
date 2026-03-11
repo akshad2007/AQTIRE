@@ -20,14 +20,14 @@
     <nav class="navbar container">
       <a href="#home" class="brand">AQTIRE</a>
       <button class="menu-toggle" aria-label="Toggle navigation">⋮</button>
-      <ul class="nav-links">
+      <ul class="nav-links reveal-on-scroll">
         <li class="mobile-only text-right"><button class="menu-close" aria-label="Close menu">✕</button></li>
         <li><a href="#home">Home</a></li>
         <li><a href="#journey">Journey</a></li>
         <li><a href="#quiz">Quiz</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a class="btn btn-nav-order"
+      <a class="btn btn-nav-order reveal-on-scroll"
         href="https://wa.me/917604933416?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20with%20AQTIRE."
         target="_blank" rel="noopener">Order Now</a>
     </nav>
@@ -37,12 +37,13 @@
     <section id="home" class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-content container">
-        <p class="kicker">Luxury in Every Bite</p>
-        <h1>AQTIRE — Crafted for Chocolate Lovers</h1>
-        <p>
-          AQTIRE handcrafted chocolates made with the finest cocoa beans.
+        <p class="kicker reveal-on-scroll">Luxury in Every Bite</p>
+        <h1 class="hero-title">AQTIRE</h1>
+        <p class="hero-subtitle reveal-on-scroll">Crafted for Chocolate Lovers</p>
+        <p class="reveal-on-scroll" style="transition-delay: 0.1s;">
+          Handcrafted chocolates made with the finest cocoa beans.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions reveal-on-scroll" style="transition-delay: 0.2s;">
           <a class="btn btn-gold" href="#journey">Start the Journey</a>
           <a class="btn btn-outline" href="#products">Explore Chocolates</a>
         </div>
@@ -56,8 +57,8 @@
           <p class="kicker">Featured Selection</p>
           <h2>Signature Chocolates</h2>
         </div>
-        <div class="product-grid">
-          <article class="product-card reveal-on-scroll ">
+        <div class="product-grid reveal-on-scroll">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/products/plain milk.jpg" alt="AQTIRE Plain Milk Chocolate" loading="lazy">
             </div>
@@ -68,7 +69,7 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/Nutties.webp" alt="AQTIRE Almond Nutties" loading="lazy">
             </div>
@@ -79,9 +80,9 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
-              <img src="assets/images/rum.jpg" AQTIRE Rum Raisin" loading="lazy">
+              <img src="assets/images/rum.jpg" alt="AQTIRE Rum Raisin" loading="lazy">
             </div>
             <h3>Rum Raisin</h3>
             <p>Rich chocolate blended with rum-soaked raisins for a bold and indulgent flavor.</p>
@@ -90,7 +91,7 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/almond ricch.webp" alt="AQTIRE Rich Almond" loading="lazy">
             </div>
@@ -101,7 +102,7 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/cashew rich.jpg" alt="AQTIRE Rich Cashew" loading="lazy">
             </div>
@@ -112,7 +113,7 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/crisp.jpg" alt="AQTIRE Milk Crunch" loading="lazy">
             </div>
@@ -123,7 +124,7 @@
               target="_blank" rel="noopener">Order via WhatsApp</a>
           </article>
 
-          <article class="product-card reveal-on-scroll ">
+          <article class="product-card">
             <div class="product-image">
               <img src="assets/images/dark plain.jpeg" alt="AQTIRE Dark Plain" loading="lazy">
             </div>
@@ -143,11 +144,26 @@
       <div class="container text-center ">
         <p class="kicker">The AQTIRE Philosophy</p>
         <h2>Passion for Craftsmanship</h2>
-        <p class="philosophy-text">
-          Chocolate is more than just a treat; it is an immersive experience. At AQTIRE, every flavor is carefully
-          crafted using premium cocoa ingredients. Our passion for chocolate craftsmanship ensures that every bite
-          resonates with elegance and purity.
-        </p>
+        <div class="philosophy-text reveal-on-scroll">
+          <p>Chocolate is more than just a simple treat; it is an experience that engages the senses and evokes emotion.
+            From the moment its rich aroma reaches you to the smooth texture that melts gently on the tongue, chocolate
+            has the power to create moments of comfort, celebration, and indulgence. It is a timeless delight enjoyed
+            across cultures, bringing people together through its warmth and flavor.</p>
+
+          <p>At AQTIRE, we believe that chocolate should be more than something you simply taste—it should be something
+            you truly experience. Every creation begins with carefully selected premium cocoa beans, chosen for their
+            depth of flavor and natural richness. These ingredients are treated with great care throughout the crafting
+            process, ensuring that the essence of the cocoa remains pure and authentic.</p>
+
+          <p>Our approach to chocolate making is guided by passion and craftsmanship. Each flavor is thoughtfully
+            developed, balancing texture, aroma, and taste to create a harmonious experience. Whether it is the smooth
+            richness of classic milk chocolate, the bold intensity of dark cocoa, or the satisfying crunch of
+            nut-filled varieties, every piece reflects dedication to quality and detail.</p>
+
+          <p>At its heart, AQTIRE is about celebrating the art of chocolate. Every bite is designed to offer not just
+            sweetness, but a moment of elegance, comfort, and discovery—an invitation to explore the beauty and
+            richness of chocolate in its finest form.</p>
+        </div>
       </div>
     </section>
 
@@ -253,8 +269,8 @@
           <p class="kicker">The Science Behind Chocolate</p>
           <h2>Why We Love It</h2>
         </div>
-        <div class="science-grid">
-          <div class="science-card reveal-on-scroll ">
+        <div class="science-grid reveal-on-scroll">
+          <div class="science-card">
             <h3>Melts in the Mouth</h3>
             <p>Chocolate melts close to body temperature (around 93°F), which is why it feels incredibly smooth,
               luxurious, and creamy when eaten.</p>
@@ -279,7 +295,7 @@
           <p class="kicker">Chocolate Around the World</p>
           <h2>Global Cocoa Cultures</h2>
         </div>
-        <div class="world-map ">
+        <div class="world-map reveal-on-scroll">
           <div class="region-card gha">
             <h4>Ghana</h4>
             <p>Rich cocoa beans with a strong, classic cocoa flavor.</p>
@@ -302,8 +318,8 @@
           <p class="kicker">Moments Made Better with Chocolate</p>
           <h2>Chocolate Rituals</h2>
         </div>
-        <div class="rituals-grid">
-          <div class="ritual-card reveal-on-scroll ">
+        <div class="rituals-grid reveal-on-scroll">
+          <div class="ritual-card">
             <h3>Morning Coffee Treat</h3>
             <p>Pair your morning espresso with the deep notes of <strong>Dark Cocoa Delight</strong>.</p>
           </div>
@@ -325,7 +341,7 @@
 
 
 
-    <section class="section creation-section">
+    <section class="section creation-section reveal-on-scroll">
       <div class="container text-center ">
         <p class="kicker">How AQTIRE Creates New Flavors</p>
         <h2>Behind the Creation</h2>
@@ -344,7 +360,7 @@
           <h2>A Sensory Experience</h2>
           <p>Discover how different textures uniquely influence and elevate the chocolate tasting experience.</p>
         </div>
-        <div class="texture-grid">
+        <div class="texture-grid reveal-on-scroll">
           <div class="texture-item "><strong>Smooth:</strong> Melts effortlessly, coating the palate seamlessly.</div>
           <div class="texture-item "><strong>Crunchy:</strong> Provides a satisfying acoustic snap and bite.</div>
           <div class="texture-item "><strong>Creamy:</strong> Velvety and rich, lingering pleasantly.</div>
@@ -353,7 +369,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal-on-scroll">
       <div class="container text-center ">
         <p class="kicker">Responsible Cocoa</p>
         <h2>Sustainability Story</h2>
@@ -371,7 +387,7 @@
           <p class="kicker">Did You Know?</p>
           <h2>Chocolate Knowledge Hub</h2>
         </div>
-        <div class="facts-list">
+        <div class="facts-list reveal-on-scroll">
           <div class="fact-item ">Chocolate was once used as currency by the Aztecs.</div>
           <div class="fact-item ">It takes around 400 cocoa beans to make one pound of chocolate.</div>
           <div class="fact-item ">Cocoa trees can live for over 100 years.</div>
@@ -405,7 +421,7 @@
           <p class="kicker">The History of Chocolate</p>
           <h2>A Timeless Discovery</h2>
         </div>
-        <div class="timeline">
+        <div class="timeline reveal-on-scroll">
           <div class="timeline-item ">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
@@ -445,7 +461,7 @@
           <p class="kicker">Chocolate Questions Game</p>
           <h2>Test Your Knowledge</h2>
         </div>
-        <div class="faq-game">
+        <div class="faq-game reveal-on-scroll">
           <div class="faq-question-card ">
             <p class="q-text">Which civilization used cocoa beans as currency?</p>
             <div class="q-options" data-correct="Aztecs">
@@ -493,7 +509,7 @@
       <div class="container ">
         <p class="kicker">How to Explore AQTIRE</p>
         <h2>Your Discovery Journey</h2>
-        <div class="journey-steps-grid">
+        <div class="journey-steps-grid reveal-on-scroll">
           <div class="j-step">
             <h3>1</h3>
             <p>Learn about chocolate</p>
@@ -514,7 +530,7 @@
       </div>
     </section>
 
-    <section class="section final-cta text-center">
+    <section class="section final-cta text-center reveal-on-scroll">
       <div class="container ">
         <h2>Your Chocolate Journey Starts Here</h2>
         <p>Explore the depths of chocolate knowledge, savor incredible stories, and discover your true flavor
@@ -538,7 +554,7 @@
       </div>
     </section>
 
-    <section id="feedback" class="section feedback-section">
+    <section id="feedback" class="section feedback-section reveal-on-scroll">
       <div class="container feedback-layout">
         <div class="feedback-form ">
           <div class="section-heading">
@@ -579,7 +595,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section container contact-layout">
+    <section id="contact" class="section container contact-layout reveal-on-scroll">
       <div class="contact-form ">
         <div class="section-heading">
           <p class="kicker">Contact</p>

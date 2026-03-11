@@ -42,6 +42,20 @@ h1, h2, h3, .brand {
   padding: clamp(3.5rem, 8vw, 6rem) 0;
 }
 
+/* ── Scroll Reveal Foundation ── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -446,6 +460,20 @@ p {
 @keyframes floatAnim {
   0% { transform: translateY(0); opacity: 0.7; }
   100% { transform: translateY(-15px); opacity: 1; }
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--white);
+  margin-bottom: 2rem;
+  font-style: italic;
 }
 
 .timeline {
