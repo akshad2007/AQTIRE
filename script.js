@@ -4,24 +4,24 @@ const navAnchors = document.querySelectorAll('.nav-links a');
 const revealElements = document.querySelectorAll('.reveal-on-scroll');
 const heroBg = document.querySelector('.hero-bg');
 const year = document.getElementById('year');
-
 const menuClose = document.querySelector('.menu-close');
+const navOverlay = document.getElementById('nav-overlay');
+
+function closeMenu() {
+  navLinks?.classList.remove('open');
+  document.body.classList.remove('menu-open');
+}
 
 menuToggle?.addEventListener('click', () => {
   navLinks?.classList.toggle('open');
   document.body.classList.toggle('menu-open');
 });
 
-menuClose?.addEventListener('click', () => {
-  navLinks?.classList.remove('open');
-  document.body.classList.remove('menu-open');
-});
+menuClose?.addEventListener('click', closeMenu);
+navOverlay?.addEventListener('click', closeMenu);
 
 navAnchors.forEach((anchor) => {
-  anchor.addEventListener('click', () => {
-    navLinks?.classList.remove('open');
-    document.body.classList.remove('menu-open');
-  });
+  anchor.addEventListener('click', closeMenu);
 });
 
 const revealObserver = new IntersectionObserver(
