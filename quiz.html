@@ -210,12 +210,25 @@
     }
   </style>
 </head>
-<body>
+  <div id="nav-overlay" aria-hidden="true"></div>
 
   <header class="site-header">
     <nav class="navbar container">
       <a href="index.html" class="brand">AQTIRE</a>
-      <a class="btn btn-nav-order" href="https://wa.me/917604933416?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20with%20AQTIRE." target="_blank" rel="noopener">Order Now</a>
+      <button class="menu-toggle" aria-label="Toggle navigation">⋮</button>
+      <ul class="nav-links">
+        <li class="mobile-only text-right"><button class="menu-close" aria-label="Close menu">✕</button></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#journey">Journey</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li class="mobile-only"><a class="btn btn-nav-order"
+            href="https://wa.me/917604933416?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20with%20AQTIRE."
+            target="_blank" rel="noopener">Order Now</a></li>
+      </ul>
+      <a class="btn btn-nav-order desktop-only"
+        href="https://wa.me/917604933416?text=Hello!%20I%20would%20like%20to%20place%20an%20order%20with%20AQTIRE."
+        target="_blank" rel="noopener">Order Now</a>
     </nav>
   </header>
 
