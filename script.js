@@ -52,9 +52,9 @@ if (quotes.length > 0) {
   setInterval(() => {
     quotes[currentQuoteIndex].classList.remove('active');
     quotes[currentQuoteIndex].setAttribute('aria-hidden', 'true');
-    
+
     currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-    
+
     quotes[currentQuoteIndex].classList.add('active');
     quotes[currentQuoteIndex].setAttribute('aria-hidden', 'false');
   }, 4000);
@@ -66,7 +66,7 @@ const faqCards = document.querySelectorAll('.faq-question-card');
 faqCards.forEach(card => {
   const optionsWrapper = card.querySelector('.q-options');
   if (!optionsWrapper) return;
-  
+
   const correctAns = optionsWrapper.dataset.correct;
   const optBtns = card.querySelectorAll('.opt-btn');
   const feedback = card.querySelector('.q-feedback');
@@ -83,7 +83,7 @@ faqCards.forEach(card => {
           b.style.opacity = '0.5';
         }
       });
-      
+
       const userAns = btn.textContent.trim();
       if (userAns === correctAns) {
         feedback.textContent = 'Correct!';
@@ -96,3 +96,61 @@ faqCards.forEach(card => {
     });
   });
 });
+// --- EmailJS Contact Form Logic ---
+(function () {
+  // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
+  emailjs.init("RH6hEDvdyvgnmJCXv");
+})();
+
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // UI Feedback: Disable button and show sending state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formStatus.className = 'form-status';
+    formStatus.style.display = 'none';
+
+    // These IDs must be replaced with your actual Service and Template IDs from EmailJS
+    // Check your EmailJS dashboard for the correct Service ID (it may not be 'default_service')
+    const serviceID = 'default_service';
+    const templateID = 'template_wz15xyn';
+
+    console.log('Attempting to send message via EmailJS...', { serviceID, templateID });
+
+    emailjs.sendForm(serviceID, templateID, this)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+
+        // Success Feedback
+        formStatus.textContent = 'Thank you for contacting AQTIRE. Your message has been sent successfully.';
+        formStatus.className = 'form-status success';
+
+        // Reset form
+        contactForm.reset();
+      }, (err) => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+
+        // Error Feedback
+        let errorMsg = 'Something went wrong. Please try again later.';
+        if (err.status === 400) {
+          errorMsg = 'Error: Please check if your Service ID or Template ID is correct.';
+        } else if (err.status === 401) {
+          errorMsg = 'Error: Public Key is invalid.';
+        }
+        
+        formStatus.textContent = errorMsg;
+        formStatus.className = 'form-status error';
+        console.error('EmailJS FAILED...', err);
+        alert('EmailJS Error: ' + JSON.stringify(err)); // Adding an alert to make errors highly visible for the user
+      });
+  });
+}

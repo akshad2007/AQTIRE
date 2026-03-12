@@ -11,6 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -601,17 +602,18 @@
           <p class="kicker">Contact</p>
           <h2>Let's Craft Sweet Moments</h2>
         </div>
-        <form>
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Message" rows="5" required></textarea>
-          <button type="submit" class="btn btn-gold">Submit</button>
+        <form id="contact-form">
+          <input type="text" id="user_name" name="user_name" placeholder="Name" required />
+          <input type="email" id="user_email" name="user_email" placeholder="Email" required />
+          <textarea id="message" name="message" placeholder="Message" rows="5" required></textarea>
+          <button type="submit" id="submit-btn" class="btn btn-gold">Send Message</button>
         </form>
+        <div id="form-status" class="form-status"></div>
       </div>
       <aside class="contact-info ">
         <h3>Get in Touch</h3>
         <p><strong>Phone:</strong> +91 7604 933 416</p>
-        <p><strong>Email:</strong> hello@aqtire.com</p>
+        <p><strong>Email:</strong> aqtire25287@gmail.com</p>
         <p><strong>Location:</strong> Ooty, Tamilnadu</p>
       </aside>
     </section>
